@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-struct Vertex
+struct TriangleVertex
 {
 	float x, y;
 	float r, g, b;
@@ -33,7 +33,7 @@ void Triangle::draw(Renderer& renderer)
 	deviceContext->PSSetShader(m_pixelShader, nullptr, 0);
 
 	// bind our vertex buffer
-	UINT stride = sizeof(Vertex);
+	UINT stride = sizeof(TriangleVertex);
 	UINT offset = 0;
 
 	deviceContext->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset); // IA refers to the first stage in the pipeline
@@ -43,7 +43,7 @@ void Triangle::draw(Renderer& renderer)
 void Triangle::createMesh(Renderer& renderer)
 {
 	// define our vertices
-	Vertex vertices[] = {
+	TriangleVertex vertices[] = {
 		{ -1, -1, 1, 0, 0 },
 		{ 0, 1, 0, 1, 0 },
 		{ 1, -1, 0, 0, 1 }

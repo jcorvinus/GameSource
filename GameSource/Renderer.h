@@ -1,6 +1,7 @@
 #pragma once
 #include "Window.h"
 #include <d3d11.h>
+#include "Vectors.h"
 
 class Renderer
 {
@@ -10,6 +11,7 @@ public:
 	void endFrame();
 	ID3D11Device* getDevice();
 	ID3D11DeviceContext* getDeviceContext();
+	Vector2 GetScreenDimensions();
 
 private:
 	void createDevice(Window& window);

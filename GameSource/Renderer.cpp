@@ -73,3 +73,8 @@ ID3D11DeviceContext* Renderer::getDeviceContext()
 {
 	return m_pDeviceContext;
 }
+
+Vector2 Renderer::GetScreenDimensions()
+{
+	return Vector2(m_backbufferDesc.Width, m_backbufferDesc.Height);
+}

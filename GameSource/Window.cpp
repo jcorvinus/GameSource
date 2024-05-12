@@ -16,6 +16,9 @@ LRESULT CALLBACK WinProc(HWND handle, UINT msg, WPARAM wparam, LPARAM lparam)
 
 Window::Window(int width, int height)
 {
+	this->width = width;
+	this->height = height;
+
 	// define window style
 	WNDCLASS wc = { 0 };
 	wc.style = CS_OWNDC; // this tells the device context cache that we want our device context to be persistent
@@ -34,4 +37,14 @@ Window::Window(int width, int height)
 HWND Window::getHandle()
 {
 	return m_handle;
+}
+
+int Window::GetWidth()
+{
+	return width;
+}
+
+int Window::GetHeight()
+{
+	return height;
 }

@@ -16,6 +16,10 @@ public:
 	static Application &instance() { static Application application; return application; }
 	void Main();
 
+	int GetWindowWidth();
+	int GetWindowHeight();
+	Vector2 GetScreenDimensions();
+
 private:
 	Window window;
 	Renderer renderer;

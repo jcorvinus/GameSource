@@ -62,3 +62,18 @@ void Application::Main()
 
 	}
 }
+
+int Application::GetWindowWidth()
+{
+	return window.GetWidth();
+}
+
+int Application::GetWindowHeight()
+{
+	return window.GetHeight();
+}
+
+Vector2 Application::GetScreenDimensions()
+{
+	return renderer.GetScreenDimensions();
+}

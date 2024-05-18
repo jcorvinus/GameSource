@@ -1,3 +1,4 @@
+#define no_init_all deprecated
 #pragma once
 #include "Window.h"
 #include <d3d11.h>

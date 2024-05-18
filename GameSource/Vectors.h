@@ -15,4 +15,12 @@ struct Vector2
 		this->x = x;
 		this->y = y;
 	}
+
+	Vector2 operator*(const float scale)
+	{
+		//this->x *= scale;
+		//this->y *= scale;
+
+		return Vector2(x * scale, y * scale);
+	}
 };

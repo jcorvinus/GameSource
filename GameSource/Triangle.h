@@ -1,4 +1,3 @@
-#define no_init_all deprecated
 #pragma once
 #include "Renderer.h"
 

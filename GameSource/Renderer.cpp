@@ -29,7 +29,7 @@ void Renderer::createDevice(Window& window)
 	// check for errors
 	if (result != S_OK)
 	{
-		MessageBox(nullptr, "Problem creating dx11", "Error", MB_OK);
+		MessageBox(nullptr, "Problem creating dx11", "Error", MB_OK); 
 		exit(0);
 	}
 }

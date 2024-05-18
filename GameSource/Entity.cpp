@@ -19,14 +19,18 @@ void Entity::Draw()
 	// todo: update our drawables
 }
 
-std::shared_ptr<Updateable> AddUpdateable(Updateable* component)
+template<typename T>
+std::shared_ptr<T> Entity::AddUpdateable(T* component)
 {
-	std::shared_ptr<Updateable> sharedUpdatable = std::make_shared<Updateable>(component);
+	std::shared_ptr<T> sharedUpdatable = std::make_shared<T>(component);
+
+	m_Updateables.push_back(sharedUpdatable);
 
 	return sharedUpdatable;
 }
 
-void Entity::RemoveUpdateable(std::shared_ptr<Updateable> updateable)
+template <typename T>
+void Entity::RemoveUpdateable(std::shared_ptr<T> updateable)
 {
 	auto it = std::find(m_Updateables.begin(), m_Updateables.end(), updateable);
 
@@ -36,13 +40,11 @@ void Entity::RemoveUpdateable(std::shared_ptr<Updateable> updateable)
 	}
 }
 
+void Entity::Start() {};
+void Entity::PreUpdate() {};
+void Entity::PreDraw() {};
+
 Entity::Entity()
 {
-	Transform newTransform = Transform();
-	transform = AddUpdateable(&newTransform);
-}
-
-Entity::~Entity()
-{
-	// clear all of our updateables
+	transform = std::make_shared<Transform>();
 }

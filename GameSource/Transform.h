@@ -1,8 +1,7 @@
 #pragma once
 #include "Vectors.h"
-#include "Updateable.h"
 
-class Transform : public Updateable
+class Transform
 {
 public:
 	Vector2 GetPosition();

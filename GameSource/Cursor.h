@@ -8,7 +8,7 @@ struct CursorVertex
 	float r, g, b;
 };
 
-class Cursor : Entity
+class Cursor
 {
 public: 
 	Cursor(Renderer& renderer);

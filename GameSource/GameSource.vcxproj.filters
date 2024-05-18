@@ -19,10 +19,10 @@
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{090c0153-595d-4a56-88ed-6e63f2e4b9c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components">
+    <Filter Include="Header Files\Updateables">
       <UniqueIdentifier>{3cc19bcd-4da2-4672-a0f0-e9937c394c42}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components">
+    <Filter Include="Source Files\Updateables">
       <UniqueIdentifier>{efa0597d-59e9-41b6-87ad-be12980dd289}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -51,6 +51,12 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Updateables</Filter>
+    </ClCompile>
+    <ClCompile Include="Updateable.cpp">
+      <Filter>Source Files\Updateables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -76,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\Updateables</Filter>
+    </ClInclude>
+    <ClInclude Include="Updateable.h">
+      <Filter>Header Files\Updateables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

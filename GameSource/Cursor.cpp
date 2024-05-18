@@ -1,12 +1,6 @@
 
 #include "Cursor.h"
 
-struct CursorVertex
-{
-	Vector2 position;
-	float r, g, b;
-};
-
 Cursor::Cursor(Renderer& renderer) : m_renderer{ renderer }
 {
 	CreateMesh();

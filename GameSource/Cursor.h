@@ -1,9 +1,14 @@
 #pragma once
 #include "Renderer.h"
+#include "Entity.h"
 
-struct CursorVertex;
+struct CursorVertex
+{
+	Vector2 position;
+	float r, g, b;
+};
 
-class Cursor
+class Cursor : Entity
 {
 public: 
 	Cursor(Renderer& renderer);

@@ -40,6 +40,11 @@ void Entity::RemoveUpdateable(std::shared_ptr<T> updateable)
 	}
 }
 
+std::shared_ptr<Transform> Entity::GetTransform()
+{
+	return transform;
+}
+
 void Entity::Start() {};
 void Entity::PreUpdate() {};
 void Entity::PreDraw() {};

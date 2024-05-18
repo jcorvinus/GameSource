@@ -17,6 +17,7 @@ public:
 	std::shared_ptr<T> AddUpdateable(T* component);
 	template <typename T>
 	void RemoveUpdateable(std::shared_ptr<T> updateable);
+	std::shared_ptr<Transform> GetTransform();
 
 protected:
 	virtual void Start();

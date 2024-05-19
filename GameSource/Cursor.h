@@ -8,7 +8,7 @@ struct CursorVertex
 	float r, g, b;
 };
 
-class Cursor : Entity
+class Cursor : public Entity
 {
 public: 
 	Cursor(Renderer& renderer);
@@ -18,6 +18,10 @@ public:
 private:
 	void CreateMesh();
 	void CreateShaders();
+
+	//virtual void Start();
+	virtual void PreUpdate();
+
 
 	Renderer& m_renderer;
 	ID3D11Buffer* vertexBuffer = nullptr;

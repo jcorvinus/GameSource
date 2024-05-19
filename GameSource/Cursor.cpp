@@ -1,5 +1,9 @@
-
+#include "Application.h"
+#include "Input.h"
 #include "Cursor.h"
+#include <fstream>
+#include <vector>
+using namespace std;
 
 Cursor::Cursor(Renderer& renderer) : m_renderer{ renderer }
 {
@@ -9,7 +13,13 @@ Cursor::Cursor(Renderer& renderer) : m_renderer{ renderer }
 
 Cursor::~Cursor()
 {
+	inputLayout->Release();
+}
 
+void Cursor::PreUpdate()
+{
+	MouseInputData mouseData = Application::instance().GetMouseInputData();
+	transform->SetPosition(Vector2(mouseData.GetScreenX(), mouseData.GetScreenY()));
 }
 
 void Cursor::CreateMesh()
@@ -29,7 +39,21 @@ void Cursor::CreateMesh()
 
 void Cursor::CreateShaders()
 {
+	ifstream vsFile("SpriteVertexShader.cso", ios::binary);
+	ifstream psFile("SpritePixelShader.cso", ios::binary);
 
+	vector<char> vsData = { istreambuf_iterator<char>(vsFile), istreambuf_iterator<char>() };
+	vector<char> psData = { istreambuf_iterator<char>(psFile), istreambuf_iterator<char>() };
+
+	m_renderer.getDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
+	m_renderer.getDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
+
+	D3D11_INPUT_ELEMENT_DESC layout[] = {
+				{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+	};
+
+	m_renderer.getDevice()->CreateInputLayout(layout, 2, vsData.data(), vsData.size(), &inputLayout);
 }
 
 void Cursor::Draw()
@@ -42,18 +66,25 @@ void Cursor::Draw()
 	for (int i = 0; i < 6; i++)
 	{
 		_vertices[i] = vertices[i];
-		//_vertices[]
+		_vertices[i].position = vertices[i].position + transform->GetPosition();
 	}
 
 	// bind shaders
+	deviceContext->IASetInputLayout(inputLayout);
+	deviceContext->VSSetShader(vertexShader, nullptr, 0);
+	deviceContext->PSSetShader(pixelShader, nullptr, 0);
 
 	// set vertex buffer
+	UINT stride = sizeof(CursorVertex);
+	UINT offset = 0;
+
+	deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset); // IA refers to the first stage in the pipeline
 
 	// draw
+	deviceContext->Draw(6, 0);
 
 	// release resources
 	vertexBuffer->Release();
 	vertexShader->Release();
 	pixelShader->Release();
-	inputLayout->Release();
 }

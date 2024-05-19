@@ -23,4 +23,9 @@ struct Vector2
 
 		return Vector2(x * scale, y * scale);
 	}
+
+	Vector2 operator+(Vector2 operant)
+	{
+		return Vector2(this->x + operant.x, this->y + operant.y);
+	}
 };

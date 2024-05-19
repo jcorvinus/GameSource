@@ -11,6 +11,7 @@
 #include "Vectors.h"
 #include "Input.h"
 #include "Entity.h"
+#include "Cursor.h"
 
 class Application
 {
@@ -21,6 +22,7 @@ public:
 	int GetWindowWidth();
 	int GetWindowHeight();
 	Vector2 GetScreenDimensions();
+	MouseInputData GetMouseInputData();
 
 	void AddEntity(std::shared_ptr<Entity> newEntity);
 	void RemoveEntity(std::shared_ptr<Entity> removeEntity);
@@ -30,6 +32,8 @@ private:
 	Renderer renderer;
 	Triangle triangle;
 	MouseInputData mouseData;
+	Cursor* cursor;
+	
 	bool applicationHasFocus = false;
 
 	std::shared_ptr<Entity> uiEntities[USHRT_MAX];

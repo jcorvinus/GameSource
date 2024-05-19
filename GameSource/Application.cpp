@@ -6,6 +6,9 @@ Application::Application() : window(800,600), renderer(window), triangle(rendere
 
 void Application::Main()
 {
+	Cursor newCursor = Cursor(renderer);
+	cursor = &newCursor;
+
 	MSG msg = { 0 };
 	while (true)
 	{
@@ -48,18 +51,21 @@ void Application::Main()
 			if (shouldExit) break;
 		}
 
-		// main loop
+		// --  main loop --
 
 		// update
+		cursor->Update();
 
 		// draw
 		renderer.beginFrame();
 
 		// render everything here
 		triangle.draw(renderer);
+		cursor->Draw();
 
 		renderer.endFrame();
 
+		// -- end main loop --
 	}
 }
 
@@ -76,4 +82,9 @@ int Application::GetWindowHeight()
 Vector2 Application::GetScreenDimensions()
 {
 	return renderer.GetScreenDimensions();
+}
+
+MouseInputData Application::GetMouseInputData()
+{
+	return mouseData;
 }

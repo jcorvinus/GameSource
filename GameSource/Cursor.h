@@ -33,31 +33,31 @@ private:
 	CursorVertex vertices[6] =
 	{
 		// left triangle
-		{ // lower left vertex
-			{ 0, -1, }, // xy
-			1, 1, 1 // rgb
-		},
 		{ // upper left vertex
-			{ 0 , 1 },
-			1, 1, 1 // rgb
+			{ -0.5, 0.5, }, // xy
+			0, 0, 1 // rgb
 		},
-		{ // lower right vertex
-			{ -1, 1 },
+		{ // upper right vertex
+			{ 0.5, 0.5 },
 			1, 1 , 1 // rgb
+		},
+		{ // lower left vertex
+			{ -0.5 , -0.5 },
+			1, 0, 0 // rgb
 		},
 
 		// right triangle
-		{ // lower right vertex
-			{ -1, 1 },
-			1, 1, 1 // rgb
-		},
-		{ // upper left vertex
-			{0, 1},
-			1, 1, 1 // rgb
-		},
 		{ // upper right vertex
-			{1, 1},
-			1, 1, 1
+			{ 0.5, 0.5 },
+			1, 1 , 1 // rgb
+		},
+		{ // lower right vertex
+			{0.5, -0.5},
+			1, 1, 1 // rgb
+		},
+		{ // lower left vertex
+			{ -0.5 , -0.5 },
+			1, 0, 0 // rgb
 		}
 	};
 

@@ -70,8 +70,10 @@ void Cursor::Draw()
 	for (int i = 0; i < 6; i++)
 	{
 		_vertices[i] = vertices[i];
-		_vertices[i].position = _vertices[i].position + transform->GetPosition();
+		//_vertices[i].position = _vertices[i].position + transform->GetPosition();
 	}
+
+	vertexData.pSysMem = _vertices;
 
 	// bind shaders
 	deviceContext->IASetInputLayout(inputLayout);

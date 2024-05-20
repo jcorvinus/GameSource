@@ -18,8 +18,8 @@ void MouseInputData::SetScreenCoordinates(short x, short y)
 	//screenY -= (windowHeight - screenDimensions.y);
 
 	// convert screen coordinates into normalized coordinates
-	//position.x = (screenX > 0) ? screenX / screenDimensions.x : 0;
-	//position.y = (screenY > 0) ? screenY / screenDimensions.y : 0;
+	//position.x = screenX / screenDimensions.x;
+	//position.y = screenY / screenDimensions.y;
 
 	position.x = 2 * (screenX / (screenDimensions.x - 1)) - 1;
 	position.y = 2 * (screenY / (screenDimensions.y - 1)) - 1;

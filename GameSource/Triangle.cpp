@@ -44,9 +44,14 @@ void Triangle::createMesh(Renderer& renderer)
 {
 	// define our vertices
 	TriangleVertex vertices[] = {
-		{ -0.1, -0.1, 1, 0, 0 },
-		{ 0, 0.1, 0, 1, 0 },
-		{ 0.1, -0.1, 0, 0, 1 }
+		{ -0.1, -0.1, 
+		0, 0, 0 }, // red
+
+		{ 0, 0.1,
+		0, 0, 0 }, // green
+
+		{ 0.1, -0.1, 
+		0, 0, 0 } // blue
 	};
 
 	// create our vertex buffer

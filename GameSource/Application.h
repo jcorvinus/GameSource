@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <windowsx.h>
 #include <memory>
+#include <ctime>
 #include "Window.h"
 #include "Renderer.h"
 #include "Triangle.h"
@@ -23,6 +24,8 @@ public:
 	int GetWindowHeight();
 	Vector2 GetScreenDimensions();
 	MouseInputData GetMouseInputData();
+	float Time();
+	float DeltaTime();
 
 	void AddEntity(std::shared_ptr<Entity> newEntity);
 	void RemoveEntity(std::shared_ptr<Entity> removeEntity);
@@ -33,6 +36,8 @@ private:
 	Triangle triangle;
 	MouseInputData mouseData;
 	Cursor* cursor;
+	float time;
+	float deltaTime;
 	
 	bool applicationHasFocus = false;
 

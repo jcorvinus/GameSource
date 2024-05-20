@@ -23,7 +23,7 @@ void Cursor::PreUpdate()
 	Vector2 position = mouseData.GetScreenPosition();
 	transform->SetPosition(position);
 
-	cout << "x: " << position.x << " y: " << position.y << endl;
+	//cout << "x: " << position.x << " y: " << position.y << endl;
 }
 
 void Cursor::CreateMesh()
@@ -70,7 +70,7 @@ void Cursor::Draw()
 	for (int i = 0; i < 6; i++)
 	{
 		_vertices[i] = vertices[i];
-		//_vertices[i].position = _vertices[i].position + transform->GetPosition();
+		_vertices[i].position = _vertices[i].position + transform->GetPosition();
 	}
 
 	vertexData.pSysMem = _vertices;
@@ -83,6 +83,8 @@ void Cursor::Draw()
 	// set vertex buffer
 	UINT stride = sizeof(CursorVertex);
 	UINT offset = 0;
+
+	m_renderer.getDevice()->CreateBuffer(&vertexBufferDesc, &vertexData, &vertexBuffer);
 
 	deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset); // IA refers to the first stage in the pipeline
 

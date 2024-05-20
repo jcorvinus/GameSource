@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include "Application.h"
 
 Application::Application() : window(800,600), renderer(window), triangle(renderer)
@@ -27,8 +28,19 @@ void Application::Main()
 	cursor = &newCursor;
 
 	MSG msg = { 0 };
+
+	clock_t previousTicks;
+	float previousTime=0;
+	
 	while (true)
 	{
+		clock_t currentTimeTicks = clock();
+		clock_t cps = CLOCKS_PER_SEC;
+
+		time = (float)currentTimeTicks / (float)cps;
+		deltaTime = time - previousTime;
+		//std::cout << "dt: " << deltaTime << std::endl;
+
 		// process messages
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
@@ -83,6 +95,8 @@ void Application::Main()
 		renderer.endFrame();
 
 		// -- end main loop --
+		previousTicks = currentTimeTicks;
+		previousTime = time;
 	}
 }
 
@@ -104,4 +118,14 @@ Vector2 Application::GetScreenDimensions()
 MouseInputData Application::GetMouseInputData()
 {
 	return mouseData;
+}
+
+float Application::Time()
+{
+	return time;
+}
+
+float Application::DeltaTime()
+{
+	return deltaTime;
 }

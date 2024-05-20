@@ -22,7 +22,7 @@ void MouseInputData::SetScreenCoordinates(short x, short y)
 	//position.y = screenY / screenDimensions.y;
 
 	position.x = 2 * (screenX / (screenDimensions.x - 1)) - 1;
-	position.y = 2 * (screenY / (screenDimensions.y - 1)) - 1;
+	position.y = (2 * (screenY / (screenDimensions.y - 1)) -1) * -1;
 }
 
 short MouseInputData::GetScreenX()

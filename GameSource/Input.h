@@ -3,18 +3,18 @@
 
 struct MouseInputData
 {
-	Vector2 GetPosition();
+	Vector2 GetScreenPosition();
 	bool GetLeftIsDown();
 	void SetLeftIsDown(bool value);
 	bool GetRightIsDown();
 	void SetRightIsDown(bool value);
 	void SetScreenCoordinates(short x, short y);
-	short GetScreenX();
-	short GetScreenY();
+	short GetPixelX();
+	short GetPixelY();
 
 private: 
-	unsigned short screenX, screenY;
+	unsigned short pixelX, pixelY;
 	bool leftIsDown;
 	bool rightIsDown;
-	Vector2 position;
+	Vector2 screenPosition;
 };

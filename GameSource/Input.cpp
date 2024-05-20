@@ -5,8 +5,8 @@
 #pragma region Mouse Input Stuff
 void MouseInputData::SetScreenCoordinates(short x, short y)
 {
-	screenX = x;
-	screenY = y;
+	pixelX = x;
+	pixelY = y;
 
 	// convert window coordinates to screen coordinates
 	// get our backbuffer dimensions?
@@ -17,27 +17,23 @@ void MouseInputData::SetScreenCoordinates(short x, short y)
 	//screenX -= (windowWidth - screenDimensions.x);
 	//screenY -= (windowHeight - screenDimensions.y);
 
-	// convert screen coordinates into normalized coordinates
-	//position.x = screenX / screenDimensions.x;
-	//position.y = screenY / screenDimensions.y;
-
-	position.x = 2 * (screenX / (screenDimensions.x - 1)) - 1;
-	position.y = (2 * (screenY / (screenDimensions.y - 1)) -1) * -1;
+	screenPosition.x = 2 * (pixelX / (screenDimensions.x - 1)) - 1;
+	screenPosition.y = (2 * (pixelY / (screenDimensions.y - 1)) -1) * -1;
 }
 
-short MouseInputData::GetScreenX()
+short MouseInputData::GetPixelX()
 {
-	return screenX;
+	return pixelX;
 }
 
-short MouseInputData::GetScreenY()
+short MouseInputData::GetPixelY()
 {
-	return screenY;
+	return pixelY;
 }
 
-Vector2 MouseInputData::GetPosition()
+Vector2 MouseInputData::GetScreenPosition()
 {
-	return position;
+	return screenPosition;
 }
 
 bool MouseInputData::GetLeftIsDown()

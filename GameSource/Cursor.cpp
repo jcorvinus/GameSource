@@ -20,7 +20,7 @@ Cursor::~Cursor()
 void Cursor::PreUpdate()
 {
 	MouseInputData mouseData = Application::instance().GetMouseInputData();
-	Vector2 position = mouseData.GetPosition();
+	Vector2 position = mouseData.GetScreenPosition();
 	transform->SetPosition(position);
 
 	cout << "x: " << position.x << " y: " << position.y << endl;

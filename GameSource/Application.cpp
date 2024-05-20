@@ -3,7 +3,8 @@
 #include <iostream>
 #include "Application.h"
 
-Application::Application() : window(800,600), renderer(window), triangle(renderer)
+Application::Application() : window(800,600), renderer(window), triangle(renderer),
+	deltaTime(0), time(0)
 {
 	AllocConsole();
 
@@ -24,8 +25,8 @@ Application::Application() : window(800,600), renderer(window), triangle(rendere
 
 void Application::Main()
 {
-	Cursor newCursor = Cursor(renderer);
-	cursor = &newCursor;
+	//Cursor newCursor = Cursor(renderer);
+	//cursor = &newCursor;
 
 	MSG msg = { 0 };
 
@@ -34,6 +35,7 @@ void Application::Main()
 	
 	while (true)
 	{
+		// todo: fix your timestep (https://gafferongames.com/post/fix_your_timestep/)
 		clock_t currentTimeTicks = clock();
 		clock_t cps = CLOCKS_PER_SEC;
 

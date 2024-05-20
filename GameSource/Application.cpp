@@ -37,7 +37,7 @@ void Application::Main()
 
 			bool shouldExit = false;
 
-			USHORT xPos, yPos;
+			short xPos, yPos;
 
 			switch (msg.message)
 			{

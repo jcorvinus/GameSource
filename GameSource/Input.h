@@ -8,9 +8,9 @@ struct MouseInputData
 	void SetLeftIsDown(bool value);
 	bool GetRightIsDown();
 	void SetRightIsDown(bool value);
-	void SetScreenCoordinates(unsigned short x, unsigned short y);
-	unsigned short GetScreenX();
-	unsigned short GetScreenY();
+	void SetScreenCoordinates(short x, short y);
+	short GetScreenX();
+	short GetScreenY();
 
 private: 
 	unsigned short screenX, screenY;

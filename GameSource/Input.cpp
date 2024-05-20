@@ -3,7 +3,7 @@
 #include "Application.h"
 
 #pragma region Mouse Input Stuff
-void MouseInputData::SetScreenCoordinates(unsigned short x, unsigned short y)
+void MouseInputData::SetScreenCoordinates(short x, short y)
 {
 	screenX = x;
 	screenY = y;
@@ -14,20 +14,23 @@ void MouseInputData::SetScreenCoordinates(unsigned short x, unsigned short y)
 	int windowWidth = Application::instance().GetWindowWidth();
 	int windowHeight = Application::instance().GetWindowHeight();
 
-	screenX -= (windowWidth - screenDimensions.x);
-	screenY -= (windowHeight - screenDimensions.y);	
+	//screenX -= (windowWidth - screenDimensions.x);
+	//screenY -= (windowHeight - screenDimensions.y);
 
 	// convert screen coordinates into normalized coordinates
-	position.x = screenDimensions.x / screenX;
-	position.y = screenDimensions.y / screenY;
+	//position.x = (screenX > 0) ? screenX / screenDimensions.x : 0;
+	//position.y = (screenY > 0) ? screenY / screenDimensions.y : 0;
+
+	position.x = 2 * (screenX / (screenDimensions.x - 1)) - 1;
+	position.y = 2 * (screenY / (screenDimensions.y - 1)) - 1;
 }
 
-unsigned short MouseInputData::GetScreenX()
+short MouseInputData::GetScreenX()
 {
 	return screenX;
 }
 
-unsigned short MouseInputData::GetScreenY()
+short MouseInputData::GetScreenY()
 {
 	return screenY;
 }

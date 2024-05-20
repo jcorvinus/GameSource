@@ -3,6 +3,7 @@
 #include "Cursor.h"
 #include <fstream>
 #include <vector>
+#include <iostream>
 using namespace std;
 
 Cursor::Cursor(Renderer& renderer) : m_renderer{ renderer }
@@ -19,7 +20,10 @@ Cursor::~Cursor()
 void Cursor::PreUpdate()
 {
 	MouseInputData mouseData = Application::instance().GetMouseInputData();
-	transform->SetPosition(Vector2(mouseData.GetScreenX(), mouseData.GetScreenY()));
+	Vector2 position = mouseData.GetPosition();
+	transform->SetPosition(position);
+
+	cout << "x: " << position.x << " y: " << position.y << endl;
 }
 
 void Cursor::CreateMesh()
@@ -66,7 +70,7 @@ void Cursor::Draw()
 	for (int i = 0; i < 6; i++)
 	{
 		_vertices[i] = vertices[i];
-		_vertices[i].position = vertices[i].position + transform->GetPosition();
+		_vertices[i].position = _vertices[i].position + transform->GetPosition();
 	}
 
 	// bind shaders

@@ -1,7 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "Application.h"
+
 Application::Application() : window(800,600), renderer(window), triangle(renderer)
 {
+	AllocConsole();
 
+	FILE* original_stdin = stdin;
+	FILE* original_stdout = stdout;
+	FILE* original_stderr = stderr;
+
+	if (freopen_s(&original_stdin, "conin$", "r", original_stdin) ||
+		freopen_s(&original_stdout, "conout$", "w", original_stdout) ||
+		freopen_s(&original_stderr, "conout$", "w", original_stderr))
+	{
+		// handle the error, as the allocation failed
+		exit(1);
+	}
+
+	printf("Debugging Window:\n");
 }
 
 void Application::Main()

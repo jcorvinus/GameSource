@@ -85,14 +85,14 @@ void Application::Main()
 		// --  main loop --
 
 		// update
-		cursor->Update();
+		//cursor->Update();
 
 		// draw
 		renderer.beginFrame();
 
 		// render everything here
 		triangle.draw(renderer);
-		cursor->Draw();
+		//cursor->Draw();
 
 		renderer.endFrame();
 

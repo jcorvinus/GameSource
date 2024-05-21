@@ -7,7 +7,8 @@
 class Renderer
 {
 public:
-	Renderer(Window& window);
+	Renderer();
+	void Init(Window& window);
 	void beginFrame();
 	void endFrame();
 	ID3D11Device* getDevice();
@@ -17,6 +18,8 @@ public:
 private:
 	void createDevice(Window& window);
 	void createRenderTarget();
+
+	bool hasInit = false;
 
 	// device stuff
 	IDXGISwapChain* m_pSwapChain = nullptr;

@@ -1,6 +1,9 @@
+#include "Application.h"
 #include "Triangle.h"
 #include <fstream>
 #include <vector>
+#include <iostream>
+#include <stdio.h>
 using namespace std;
 
 struct TriangleVertex
@@ -9,10 +12,9 @@ struct TriangleVertex
 	float r, g, b;
 };
 
-Triangle::Triangle(Renderer& renderer)
+Triangle::Triangle()
 {
-	createMesh(renderer);
-	createShaders(renderer);
+
 }
 
 Triangle::~Triangle()
@@ -23,9 +25,9 @@ Triangle::~Triangle()
 	m_inputLayout->Release();
 }
 
-void Triangle::draw(Renderer& renderer)
+void Triangle::draw()
 {
-	ID3D11DeviceContext* deviceContext = renderer.getDeviceContext();
+	ID3D11DeviceContext* deviceContext = Application::instance().Renderer()->getDeviceContext();
 
 	// bind shaders
 	deviceContext->IASetInputLayout(m_inputLayout);
@@ -40,7 +42,7 @@ void Triangle::draw(Renderer& renderer)
 	deviceContext->Draw(3, 0);
 }
 
-void Triangle::createMesh(Renderer& renderer)
+void Triangle::createMesh()
 {
 	// define our vertices
 	TriangleVertex vertices[] = {
@@ -61,10 +63,10 @@ void Triangle::createMesh(Renderer& renderer)
 	D3D11_SUBRESOURCE_DATA vertexData = { 0 };
 	vertexData.pSysMem = vertices;
 
-	renderer.getDevice()->CreateBuffer(&vertexBufferDesc, &vertexData, &m_vertexBuffer); // normally you'd do error checks here
+	Application::instance().Renderer()->getDevice()->CreateBuffer(&vertexBufferDesc, &vertexData, &m_vertexBuffer); // normally you'd do error checks here
 }
 
-void Triangle::createShaders(Renderer& renderer)
+void Triangle::createShaders()
 {
 	// create shaders
 	ifstream vsFile("TriangleVertexShader.cso", ios::binary); //if is input file. output = ofstream
@@ -73,8 +75,8 @@ void Triangle::createShaders(Renderer& renderer)
 	vector<char> vsData = { istreambuf_iterator<char>(vsFile), istreambuf_iterator<char>() };
 	vector<char> psData = { istreambuf_iterator<char>(psFile), istreambuf_iterator<char>() };
 
-	renderer.getDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &m_vertexShader);
-	renderer.getDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &m_pixelShader);
+	Application::instance().Renderer()->getDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &m_vertexShader);
+	Application::instance().Renderer()->getDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &m_pixelShader);
 
 	// create input layouts
 	D3D11_INPUT_ELEMENT_DESC layout[] = {
@@ -82,6 +84,20 @@ void Triangle::createShaders(Renderer& renderer)
 		{ "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 	};
 
-	renderer.getDevice()->CreateInputLayout(layout, 2, vsData.data(), vsData.size(), &m_inputLayout);
-	
+	Application::instance().Renderer()->getDevice()->CreateInputLayout(layout, 2, vsData.data(), vsData.size(), &m_inputLayout);
+}
+
+void Triangle::Init()
+{
+	if (hasInit)
+	{
+		cout << "Can't initialize Triangle class more than once! Exiting!" << endl;
+		exit(2);
+	}
+	else
+	{
+		createMesh();
+		createShaders();
+		hasInit = true;
+	}
 }

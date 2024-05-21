@@ -16,6 +16,21 @@
 
 class Application
 {
+private:
+	Window window;
+	Triangle triangle;
+	MouseInputData mouseData;
+	Renderer renderer;
+	//Cursor* cursor;
+	float time;
+	float deltaTime;
+
+	bool applicationHasFocus = false;
+
+	std::shared_ptr<Entity> uiEntities[USHRT_MAX];
+
+	Application();
+
 public: 
 	static Application &instance() { static Application application; return application; }
 	void Main();
@@ -29,19 +44,5 @@ public:
 
 	void AddEntity(std::shared_ptr<Entity> newEntity);
 	void RemoveEntity(std::shared_ptr<Entity> removeEntity);
-
-private:
-	Window window;
-	Renderer renderer;
-	Triangle triangle;
-	MouseInputData mouseData;
-	//Cursor* cursor;
-	float time;
-	float deltaTime;
-	
-	bool applicationHasFocus = false;
-
-	std::shared_ptr<Entity> uiEntities[USHRT_MAX];
-
-	Application();
+	Renderer* Renderer();
 };

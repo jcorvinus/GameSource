@@ -1,14 +1,32 @@
 #define no_init_all deprecated
+#include <iostream>
 #include "Renderer.h"
 
-Renderer::Renderer(Window& window)
+using namespace std;
+
+Renderer::Renderer() : m_backbufferDesc({0})
 {
-	createDevice(window);
-	createRenderTarget();
+
+}
+
+void Renderer::Init(Window& window)
+{
+	if (hasInit)
+	{
+		std::cout << "You've already initialized this renderer! This is not allowed, exiting!" << std::endl;
+		exit(2);
+	}
+	else
+	{
+		createDevice(window);
+		createRenderTarget();
+		hasInit = true;
+	}
 }
 
 void Renderer::createDevice(Window& window)
 {
+	
 	// create our swap chain. A swap chain enables multibuffering. Swapping front and back buffer.
 	DXGI_SWAP_CHAIN_DESC swapChainDesc = { 0 };
 	swapChainDesc.BufferCount = 1; // 1 buffer is for back buffering

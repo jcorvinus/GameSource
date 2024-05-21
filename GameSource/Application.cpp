@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Application.h"
 
-Application::Application() : window(800,600), renderer(window), triangle(renderer),
+Application::Application() : window(800,600), triangle(),
 	deltaTime(0), time(0)
 {
 	AllocConsole();
@@ -23,10 +23,18 @@ Application::Application() : window(800,600), renderer(window), triangle(rendere
 	printf("Debugging Window:\n");
 }
 
+Renderer* Application::Renderer()
+{
+	return &renderer;
+}
+
 void Application::Main()
 {
+	renderer.Init(window);
+
 	//Cursor newCursor = Cursor(renderer);
 	//cursor = &newCursor;
+	triangle.Init();
 
 	MSG msg = { 0 };
 
@@ -91,7 +99,7 @@ void Application::Main()
 		renderer.beginFrame();
 
 		// render everything here
-		triangle.draw(renderer);
+		triangle.draw();
 		//cursor->Draw();
 
 		renderer.endFrame();
@@ -130,4 +138,14 @@ float Application::Time()
 float Application::DeltaTime()
 {
 	return deltaTime;
+}
+
+void Application::AddEntity(std::shared_ptr<Entity> newEntity)
+{
+	std::cout << "AddEntity not yet implemented!" << std::endl;
+}
+
+void Application::RemoveEntity(std::shared_ptr<Entity> removeEntity)
+{
+	std::cout << "RemoveEnitty not yet implemented!" << std::endl;
 }

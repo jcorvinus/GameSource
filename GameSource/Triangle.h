@@ -4,13 +4,17 @@
 class Triangle
 {
 public:
-	Triangle(Renderer& renderer);
+	Triangle();
 	~Triangle();
-	void draw(Renderer& renderer);
+	void draw();
+
+	void Init();
 
 private:
-	void createMesh(Renderer& renderer);
-	void createShaders(Renderer& renderer);
+	void createMesh();
+	void createShaders();
+
+	bool hasInit = false;
 
 	ID3D11Buffer* m_vertexBuffer = nullptr;
 	ID3D11VertexShader* m_vertexShader = nullptr;

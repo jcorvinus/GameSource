@@ -32,9 +32,10 @@ void Application::Main()
 {
 	renderer.Init(window);
 
-	//Cursor newCursor = Cursor(renderer);
-	//cursor = &newCursor;
-	triangle.Init();
+	Cursor newCursor = Cursor();
+	cursor = &newCursor;
+	newCursor.Init();
+	//triangle.Init();
 
 	MSG msg = { 0 };
 
@@ -93,14 +94,14 @@ void Application::Main()
 		// --  main loop --
 
 		// update
-		//cursor->Update();
+		cursor->Update();
 
 		// draw
 		renderer.beginFrame();
 
 		// render everything here
-		triangle.draw();
-		//cursor->Draw();
+		//triangle.draw();
+		cursor->Draw();
 
 		renderer.endFrame();
 

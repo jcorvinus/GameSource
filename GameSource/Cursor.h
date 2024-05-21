@@ -11,8 +11,9 @@ struct CursorVertex
 class Cursor : public Entity
 {
 public: 
-	Cursor(Renderer& renderer);
+	Cursor();
 	~Cursor();
+	void Init();
 	void Draw();
 
 private:
@@ -22,8 +23,7 @@ private:
 	//virtual void Start();
 	virtual void PreUpdate();
 
-
-	Renderer& m_renderer;
+	bool hasInit = false;
 	ID3D11Buffer* vertexBuffer = nullptr;
 	ID3D11VertexShader* vertexShader = nullptr;
 	ID3D11PixelShader* pixelShader = nullptr;

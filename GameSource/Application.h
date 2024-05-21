@@ -21,7 +21,7 @@ private:
 	Triangle triangle;
 	MouseInputData mouseData;
 	Renderer renderer;
-	//Cursor* cursor;
+	Cursor* cursor;
 	float time;
 	float deltaTime;
 

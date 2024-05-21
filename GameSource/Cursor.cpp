@@ -58,7 +58,14 @@ void Cursor::CreateShaders()
 		{ "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 	};
 
-	Application::instance().Renderer()->getDevice()->CreateInputLayout(layout, 2, vsData.data(), vsData.size(), &inputLayout);
+	HRESULT createInputResult = Application::instance().Renderer()->getDevice()->CreateInputLayout(layout, 2, vsData.data(), vsData.size(), &inputLayout);
+
+	if (createInputResult < 0) // failed
+	{
+		cout << "Cursor CreateInputLayout Failed" << endl;
+		system("PAUSE");
+		exit(3);
+	}
 }
 
 void Cursor::Draw()

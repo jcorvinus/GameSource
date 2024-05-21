@@ -19,10 +19,10 @@ Triangle::Triangle()
 
 Triangle::~Triangle()
 {
-	m_vertexBuffer->Release();
-	m_vertexShader->Release();
-	m_pixelShader->Release();
-	m_inputLayout->Release();
+	if(m_vertexBuffer != nullptr) m_vertexBuffer->Release();
+	if(m_vertexBuffer != nullptr) m_vertexShader->Release();
+	if(m_pixelShader != nullptr) m_pixelShader->Release();
+	if(m_inputLayout != nullptr) m_inputLayout->Release();
 }
 
 void Triangle::draw()

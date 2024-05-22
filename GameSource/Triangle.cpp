@@ -84,7 +84,12 @@ void Triangle::createShaders()
 		{ "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 	};
 
-	Application::instance().Renderer()->getDevice()->CreateInputLayout(layout, 2, vsData.data(), vsData.size(), &m_inputLayout);
+	HRESULT result = Application::instance().Renderer()->getDevice()->CreateInputLayout(layout, 2, vsData.data(), vsData.size(), &m_inputLayout);
+
+	if (result != 0)
+	{
+		cout << "Error creating layout in triangle!" << endl;
+	}
 }
 
 void Triangle::Init()

@@ -1,8 +1,7 @@
 struct Input
 {
-	float4 position : SV_POSITION;
+	float2 position : POSITION;
 	float3 color : COLOR;
-	// todo: add texcoord here
 };
 
 struct Output
@@ -13,7 +12,8 @@ struct Output
 
 Output main(Input input)
 {
-	Output output; 
+	Output output;
+
 	output.position = float4(input.position.x, input.position.y, 0, 1);
 	output.color = input.color;
 
